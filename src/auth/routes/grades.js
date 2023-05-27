@@ -18,11 +18,11 @@ router.post('/grades', bearerAuth, acl('create'), async (req, res, next) => {
 });
 
 
-router.get('/grades', basicAuth, async (request, response, next) => {
+router.get('/grades', basicAuth, async (req, res, next) => {
   try {
     let allGrades = await gradesModel.read();
 
-    response.status(200).send(allGrades);
+    res.status(200).send(allGrades);
   } catch(err) {
     next(err);
   }
