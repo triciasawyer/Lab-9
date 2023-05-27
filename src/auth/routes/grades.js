@@ -3,11 +3,10 @@
 const express = require('express');
 const router = express.Router();
 const { gradesModel } = require('../models/grades/model');
-const basicAuth = require('../auth/middleware/basic');
-const bearerAuth = require('../auth/middleware/bearer');
+const basicAuth = require('../../auth/middleware/basic');
+const bearerAuth = require('../../auth/middleware/bearer');
 const authRouter = express.Router();
-
-const acl = require('../auth/middleware/acl');
+const acl = require('../../auth/middleware/acl');
 
 authRouter.post('/grades', bearerAuth, acl('create'), async (req, res, next) => {
   try {

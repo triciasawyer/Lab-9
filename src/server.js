@@ -8,7 +8,7 @@ const cors = require('cors');
 const errorHandler = require('./error-handlers/500.js');
 const notFound = require('./error-handlers/404.js');
 const authRoutes = require('./auth/routes/routes.js');
-const gradeRoutes = require('./auth/routes/routes.js');
+const gradeRoutes = require('./auth/routes/grades.js');
 // const
 
 // Prepare the express app
@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use(authRoutes);
-app.use(gradeRoutes);
+app.use('/api/grades', gradeRoutes);
 
 // Catchalls
 app.use(notFound);
