@@ -5,9 +5,11 @@ const router = express.Router();
 const { gradesModel } = require('../models/index');
 const basicAuth = require('../auth/middleware/basic');
 const bearerAuth = require('../auth/middleware/bearer');
+const authRouter = express.Router();
+
 const acl = require('../auth/middleware/acl');
 
-router.post('/grades', bearerAuth, acl('create'), async (req, res, next) => {
+authRouter.post('/grades', bearerAuth, acl('create'), async (req, res, next) => {
   try {
     let newGrade = await gradesModel.create(req.body);
 
@@ -18,7 +20,7 @@ router.post('/grades', bearerAuth, acl('create'), async (req, res, next) => {
 });
 
 
-router.get('/grades', basicAuth, async (req, res, next) => {
+authRouter.get('/grades', basicAuth, async (req, res, next) => {
   try {
     let allGrades = await gradesModel.read();
 
@@ -29,7 +31,7 @@ router.get('/grades', basicAuth, async (req, res, next) => {
 });
 
 
-router.get('/grade/:id', basicAuth, async (req, res, next) => {
+authRouter.get('/grade/:id', basicAuth, async (req, res, next) => {
   try {
     let singleGrade = await gradesModel.read(req.params.id);
 
@@ -40,7 +42,7 @@ router.get('/grade/:id', basicAuth, async (req, res, next) => {
 });
 
 
-router.put('/grade/:id', bearerAuth, acl('update'), async (req, res, next) => {
+authRouter.put('/grade/:id', bearerAuth, acl('update'), async (req, res, next) => {
   try {
     await gradesModel.update(req.body, req.params.id);
     let updatedGrade = await gradesModel.read(req.params.id);
@@ -52,7 +54,7 @@ router.put('/grade/:id', bearerAuth, acl('update'), async (req, res, next) => {
 });
 
 
-router.delete('/grade/:id', bearerAuth, acl('delete'), async (req, res, next) => {
+authRouter.delete('/grade/:id', bearerAuth, acl('delete'), async (req, res, next) => {
   try {
     const deletedGrade = await gradesModel.delete(req.params.id);
     res.status(200).send(deletedGrade);
