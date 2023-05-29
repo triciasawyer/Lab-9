@@ -39,4 +39,4 @@ DELETE : /api/v2/delete delete a food record
 
 ### UML
 
-![auth-api UML](./lab8-UML.png)
+![Grade System UML](./assets/Grade-system-UML.png)
