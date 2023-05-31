@@ -2,15 +2,14 @@
 
 const express = require('express');
 const router = express.Router();
-const { gradesModel } = require('../models/grades/model');
+const { grades } = require('../models');
 const basicAuth = require('../../auth/middleware/basic');
 const bearerAuth = require('../../auth/middleware/bearer');
-const authRouter = express.Router();
 const acl = require('../../auth/middleware/acl');
 
-authRouter.post('/grades', bearerAuth, acl('create'), async (req, res, next) => {
+router.post('/grade', bearerAuth, acl('create'), async (req, res, next) => {
   try {
-    let newGrade = await gradesModel.create(req.body);
+    let newGrade = await grades.create(req.body);
 
     res.status(200).send(newGrade);
   } catch(err) {
@@ -19,9 +18,9 @@ authRouter.post('/grades', bearerAuth, acl('create'), async (req, res, next) => 
 });
 
 
-authRouter.get('/grades', basicAuth, async (req, res, next) => {
+router.get('/grade', async (req, res, next) => {
   try {
-    let allGrades = await gradesModel.read();
+    let allGrades = await grades.read();
 
     res.status(200).send(allGrades);
   } catch(err) {
@@ -30,9 +29,9 @@ authRouter.get('/grades', basicAuth, async (req, res, next) => {
 });
 
 
-authRouter.get('/grade/:id', basicAuth, async (req, res, next) => {
+router.get('/grade/:id', basicAuth, async (req, res, next) => {
   try {
-    let singleGrade = await gradesModel.read(req.params.id);
+    let singleGrade = await grades.read(req.params.id);
 
     res.status(200).send(singleGrade);
   } catch(err) {
@@ -41,10 +40,10 @@ authRouter.get('/grade/:id', basicAuth, async (req, res, next) => {
 });
 
 
-authRouter.put('/grade/:id', bearerAuth, acl('update'), async (req, res, next) => {
+router.put('/grade/:id', bearerAuth, acl('update'), async (req, res, next) => {
   try {
-    await gradesModel.update(req.body, req.params.id);
-    let updatedGrade = await gradesModel.read(req.params.id);
+    await grades.update(req.params.id,req.body);
+    let updatedGrade = await grades.read(req.params.id);
 
     res.status(200).send(updatedGrade);
   } catch(err) {
@@ -53,9 +52,9 @@ authRouter.put('/grade/:id', bearerAuth, acl('update'), async (req, res, next) =
 });
 
 
-authRouter.delete('/grade/:id', bearerAuth, acl('delete'), async (req, res, next) => {
+router.delete('/grade/:id', bearerAuth, acl('delete'), async (req, res, next) => {
   try {
-    const deletedGrade = await gradesModel.delete(req.params.id);
+    const deletedGrade = await grades.delete(req.params.id);
     res.status(200).send(deletedGrade);
   } catch(err) {
     next(err);
