@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use(authRoutes);
-app.use('/api/grades', gradeRoutes);
+app.use(gradeRoutes);
 
 // Catchalls
 app.use(notFound);
