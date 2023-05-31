@@ -8,7 +8,8 @@ Create a server that allows the user to sign in and sign up, giving someone like
 
 ## Links and Resources
 
-Code from previous lab, lab 8(auth api)
+- Code from previous lab, lab 8(auth api)
+- Got help from Ryan with the grade routes(crud)
 
 ## Setup
 
