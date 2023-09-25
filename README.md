@@ -1,43 +1,47 @@
-# Project: Lab 9 - grading system
+# Gradebook Application
 
 ## Author: Tricia and Kao
 
 ## Problem Domain
 
-Create a server that allows the user to sign in and sign up, giving someone like a teacher(with admin role), access to grades.
+Our project aims to create a secure server that facilitates user sign-in and sign-up functionality, focusing on providing users, especially teachers, access to grade information through CRUD (Create, Read, Update, Delete) operations. Building upon the foundation of our previous lab (Lab 8 - Auth API), we have integrated additional features for managing grades.
 
 ## Links and Resources
 
-- Code from previous lab, lab 8(auth api)
-- Got help from Ryan with the grade routes(crud)
+- Code from previous lab, lab 8 (auth api).
+- Received guidance and assistance from Ryan in implementing CRUD operations related to grades.
 
 ## Setup
 
-### `.env` requirements
+### Environment Variables
 
-- `PORT` - Port Number
-- `DATABASE_URL` - URL to the running Postgres instance/db
-- `SECRET` - Secret for jwt tokens
+PORT - Port Number
+DATABASE_URL - URL to the running PostgreSQL instance/database
+SECRET - Secret for JWT tokens
 
-### How to initialize/run your application (where applicable)
+### Initializing and Running the Application
 
-- Create repo
-- Add starter code
-- `npm install` to install dependencies.
-- `npm run db:config` then edit the created config file.
-- `npm run db:create` to create the database.
-- `npm start` to start the application.
+To set up and run the application, follow these steps:
+
+1. Create a repository for the project.
+3. Run `npm install` to install the necessary dependencies.
+4. Configure the database by running `npm run db:config` and edit the generated configuration file as needed.
+5. Create the database by executing `npm run db:create`.
+6. Start the application using `npm start`.
 
 ### Features / Routes
 
-Certain routes within v2 and user options will require basic or bearer auth.
-GET : /api/v2/food - get all food records
-GET : /api/v2/food/:id - get a specific food record
-POST : /api/v2/food - update a food record
-PUT : /api/v2/food/:id updated a food record by id
-PATCH : /api/v2/food/:id update a food record by id
-DELETE : /api/v2/delete delete a food record
+Our application offers the following routes and features, some of which require basic or bearer authentication:
 
-### UML
+- GET: /api/v2/food - Retrieve all food records.
+- GET: /api/v2/food/:id - Retrieve a specific food record.
+- POST: /api/v2/food - Create a new food record.
+- PUT: /api/v2/food/:id - Update a food record by its ID.
+- PATCH: /api/v2/food/:id - Partially update a food record by its ID.
+- DELETE: /api/v2/delete - Delete a food record.
 
-![Grade System UML](./assets/Grade-system-UML.png)
+### UML Diagra,
+
+![Gradebook Application UML](./assets/Grade-system-UML.png)
+
+This UML diagram provides an overview of the project's architecture and relationships, illustrating the CRUD functionality for managing grade records.
